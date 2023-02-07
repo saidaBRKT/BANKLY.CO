@@ -1,4 +1,4 @@
-package Dto;
+package com.example.gatewayservice.Dto;
 
 import lombok.Getter;
 import lombok.Setter;

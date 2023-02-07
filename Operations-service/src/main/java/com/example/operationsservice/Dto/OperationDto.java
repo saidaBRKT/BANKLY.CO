@@ -1,16 +1,16 @@
-package Dto;
+package com.example.operationsservice.Dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto implements Serializable {
+public class OperationDto implements Serializable {
     private Long id;
     private String cin;
     private String firstName;
@@ -19,7 +19,7 @@ public class UserDto implements Serializable {
     private String email;
     private String password;
 
-    public UserDto(String cin,String firstName,String lastName,String phone, String email,String password) {
+    public OperationDto(String cin, String firstName, String lastName, String phone, String email, String password) {
         this.cin = cin;
         this.firstName=firstName;
         this.lastName=lastName;

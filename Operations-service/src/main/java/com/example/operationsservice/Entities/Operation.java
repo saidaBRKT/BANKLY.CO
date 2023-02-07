@@ -1,25 +1,25 @@
-package Entities;
+package com.example.operationsservice.Entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
 
 @Getter
 @Setter
-@Document
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class Operation {
     @Id
     private Long id;
-    @Indexed(unique = true)
+    @Column(unique = true)
     private String reference;
     private LocalDate date;
     private Double amount;
