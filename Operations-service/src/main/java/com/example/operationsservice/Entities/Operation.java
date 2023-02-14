@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 
@@ -18,11 +16,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Operation {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(unique = true)
     private String reference;
     private LocalDate date;
     private Double amount;
+    @Enumerated(EnumType.STRING)
     private OperationType operation_type;
 
 }

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class WalletDto implements Serializable {
+public class WalletDto {
 
     private Long id;
     private String reference;

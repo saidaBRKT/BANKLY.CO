@@ -1,14 +1,13 @@
 package com.example.walletservice.Services.imp;
 
-import com.example.walletservice.Dto.ResponseDto;
-import com.example.walletservice.Dto.TransferDtoToEntity;
-import com.example.walletservice.Dto.TransferEntityToDto;
-import com.example.walletservice.Dto.WalletDto;
+import com.example.walletservice.Dto.*;
 import com.example.walletservice.Entities.Wallet;
+import com.example.walletservice.Feign.UserFeign;
 import com.example.walletservice.Repositories.WalletRepository;
 import com.example.walletservice.Services.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +17,11 @@ public class WalletServiceImp implements WalletService {
     @Autowired
     WalletRepository walletRepository;
 
+//    @Autowired
+//    private RestTemplate restTemplate;
+
+    @Autowired
+    private UserFeign userFeign;
     @Override
     public ResponseDto addWallet(WalletDto walletDto) {
         Wallet wallet= TransferDtoToEntity.walletDtoToWallet(walletDto);
@@ -45,6 +49,42 @@ public class WalletServiceImp implements WalletService {
         }
 
         return null;
+    }
+
+    @Override
+    public ResponseTemplateDto getWalletWithUser(Long walletId) {
+        ResponseTemplateDto responseTemplateDto=new ResponseTemplateDto();
+        Wallet wallet=walletRepository.findById(walletId).get();
+
+        UserDto userDto=userFeign.getOneUser(wallet.getCin_user());
+//             restTemplate.getForObject("http://localhost:9091/api/v1/users/cin/"+wallet.getCin_user(),UserDto.class);
+
+        responseTemplateDto.setUserDto(userDto);
+        responseTemplateDto.setWalletDto(TransferEntityToDto.walletToWalletDto(wallet));
+        return responseTemplateDto;
+    }
+
+    @Override
+    public WalletDto getOneWallet(Long walletId) {
+        return TransferEntityToDto.walletToWalletDto(walletRepository.findById(walletId).get());
+    }
+
+    @Override
+    public WalletDto updateBalance(WalletDto walletDto) {
+        Wallet w=TransferDtoToEntity.walletDtoToWallet(walletDto);
+        Wallet wallet=walletRepository.findByReference(w.getReference());
+        System.out.println("1:"+w);
+        System.out.println("2:"+wallet);
+        if(wallet!=null){
+            wallet=w;
+            Wallet wallet1=walletRepository.save(wallet);
+            System.out.println("3:"+wallet);
+            System.out.println("4:"+wallet1);
+            return TransferEntityToDto.walletToWalletDto(wallet1);
+        }else{
+            return  null;
+        }
+
     }
 
 }

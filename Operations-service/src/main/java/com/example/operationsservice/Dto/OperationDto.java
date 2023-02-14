@@ -1,30 +1,30 @@
 package com.example.operationsservice.Dto;
 
+import com.example.operationsservice.Entities.OperationType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import java.io.Serializable;
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class OperationDto implements Serializable {
-    private Long id;
-    private String cin;
-    private String firstName;
-    private String lastName;
-    private String phone;
-    private String email;
-    private String password;
+    private String reference;
+    private LocalDate date;
+    private Double amount;
+    private OperationType operation_type;
 
-    public OperationDto(String cin, String firstName, String lastName, String phone, String email, String password) {
-        this.cin = cin;
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.phone=phone;
-        this.email = email;
-        this.password = password;
-    }
+//
+//    public OperationDto(String reference, LocalDate date, Double amount, OperationType operation_type) {
+//        this.reference=reference;
+//        this.date=date;
+//        this.amount=amount;
+//        this.operation_type=operation_type;
+//    }
 }

@@ -6,6 +6,8 @@ import com.example.operationsservice.Services.OperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/operations")
 public class OperationController {
@@ -13,20 +15,25 @@ public class OperationController {
     @Autowired
     private OperationService operationService;
 
-    @GetMapping("/all")
-    public String pehk(){
-        System.out.println("fghjk");
-        return "test";
+    @GetMapping("/all-operations")
+    public List<OperationDto> AllOperations(){
+        return operationService.getAllOperations();
     }
 
-    @PostMapping("/diposit")
-    public ResponseDto depositMoney(@RequestBody OperationDto operationDto){
-        return null;
+
+    @PostMapping("/add-operation")
+    public OperationDto addOperation(@RequestBody OperationDto operationDto){
+        return operationService.addOperation(operationDto);
     }
 
-    @PostMapping("/withdraw")
-    public ResponseDto withdrawMoney(@RequestBody OperationDto operationDto){
-        return null;
+    @PostMapping("/deposit/{walletId}")
+    public ResponseDto depositMoney(@RequestBody OperationDto operationDto,@PathVariable Long walletId){
+        return operationService.depositMoney(operationDto,walletId);
+    }
+
+    @PostMapping("/withdraw/{walletId}")
+    public ResponseDto withdrawMoney(@RequestBody OperationDto operationDto,@PathVariable("walletId") Long walletId){
+        return operationService.withdrawMoney(operationDto,walletId);
     }
 
 }

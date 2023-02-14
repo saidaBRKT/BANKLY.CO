@@ -5,7 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/BANKLY.CO.iml" filepath="$PROJECT_DIR$/.idea/BANKLY.CO.iml" />
       <module fileurl="file://$PROJECT_DIR$/Gateway-service/Gateway-service.iml" filepath="$PROJECT_DIR$/Gateway-service/Gateway-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/Operations-service/Operations-service.iml" filepath="$PROJECT_DIR$/Operations-service/Operations-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/User-services/User-services.iml" filepath="$PROJECT_DIR$/User-services/User-services.iml" />
       <module fileurl="file://$PROJECT_DIR$/Wallet-service/Wallet-service.iml" filepath="$PROJECT_DIR$/Wallet-service/Wallet-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
     </modules>
   </component>
 </project>
